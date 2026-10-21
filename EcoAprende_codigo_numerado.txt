@@ -1,0 +1,56 @@
+001: <!DOCTYPE html> 002:
+003:
+004:
+005:
+006:
+EcoAprende | Cuestionario ambiental
+007: 008:
+208:
+209: 210:
+211:
+212:
+🌱 EcoAprende
+213:
+Aprende hoy, protege el planeta mañana.
+214:
+215: 216:
+217:
+218: 219:
+
+220: Pregunta 1 de 5 221:
+
+222: 223:
+
+224:
+
+225:
+
+226: 227:
+228: 229:
+
+230: 231:
+232: Selecciona una respuesta para continuar. 233:
+234: 235:
+
+236: <button 237: type=“button” 238: class=“secundario” 239:
+id=“anterior” 240: disabled 241: > 242: Anterior 243: 244: 245: <button
+246: type=“button” 247: id=“comprobar” 248: > 249: Comprobar respuesta
+250: 251: 252: <button 253: type=“button” 254: id=“siguiente” 255:
+disabled 256: > 257: Siguiente pregunta → 258: 259:
+
+260:
+261: 262:
+263:
+🎉 ¡Cuestionario terminado!
+264:
+Gracias por aprender a cuidar nuestro planeta.
+265: 266:
+
+267:
+268: 269: 270: Volver a intentarlo 271: 272:
+273:
+274: 275:
+276: 🌎 EcoAprende — Pequeñas acciones, grandes cambios. 277:
+278: 279:
+513:
+514:
