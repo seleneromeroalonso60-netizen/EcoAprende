@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoAprende | Cuidemos el planeta</title>
+  <style>
+    :root {
+      --verde: #167d52;
+      --verde-oscuro: #075c3b;
+      --fondo: #f4fbf6;
+      --blanco: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #18352a;
+      background: var(--fondo);
+      line-height: 1.6;
+    }
+    header {
+      background: white;
+      padding: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #cde8d6;
+    }
+    .nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand {
+      font-size: 25px;
+      color: var(--verde);
+      font-weight: bold;
+      text-decoration: none;
+    }
+    nav { display: flex; gap: 15px; flex-wrap: wrap; }
+    nav a { color: var(--verde-oscuro); text-decoration: none; font-weight: bold; }
+    .hero {
+      padding: 65px 20px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg, #167d52, #168db1);
+    }
+    .hero h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.15; }
+    .hero p { max-width: 650px; margin: 20px auto; font-size: 18px; }
+    .boton {
+      background: #ffcf57;
+      color: #263b2f;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+    .boton:hover { filter: brightness(.96); }
+    main { max-width: 1100px; margin: auto; padding: 30px 20px; }
+    section { margin-bottom: 40px; scroll-margin-top: 100px; }
+    h2 { color: var(--verde-oscuro); }
+    .tarjetas {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .tarjeta {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid #d6eadc;
+      box-shadow: 0 4px 12px #0000000a;
+    }
+    .emoji { font-size: 38px; }
+    .tarjeta h3 { color: var(--verde-oscuro); }
+    .informacion {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 15px;
+      background: #e5f6ec;
+      border-left: 5px solid var(--verde);
+    }
+    .informacion.visible { display: block; }
+    .quiz { background: #e8f5ff; padding: 24px; border-radius: 18px; }
+    .respuestas { display: grid; gap: 10px; }
+    .respuestas button {
+      background: white;
+      border: 2px solid #c6deea;
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 16px;
+    }
+    .respuestas button:hover { border-color: var(--verde); }
+    .respuestas button:disabled { cursor: default; opacity: .8; }
+    #comentario { font-weight: bold; min-height: 25px; }
+    .acerca {
+      background: white;
+      padding: 22px;
+      border-radius: 16px;
+      border: 1px solid #d6eadc;
+    }
+    footer {
+      text-align: center;
+      background: #e1f3e7;
+      color: var(--verde-oscuro);
+      padding: 25px;
+    }
+    @media (max-width: 850px) {
+      .tarjetas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 520px) {
+      .nav { flex-direction: column; align-items: flex-start; }
+      .tarjetas { grid-template-columns: 1fr; }
+      .hero { padding: 45px 15px; }
+      main { padding: 20px 14px; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="brand" href="#inicio">🌱 EcoAprende</a>
+    <nav aria-label="Menú principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#temas">Temas</a>
+      <a href="#quiz">Cuestionario</a>
+      <a href="#acerca">Acerca de</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <h1>¡Cuidemos juntos nuestro planeta!</h1>
+  <p>Aprende hábitos sencillos para reducir la contaminación, ahorrar recursos y proteger la naturaleza.</p>
+  <a class="boton" href="#temas">Comenzar a aprender</a>
+</section>
+
+<main>
+  <section id="temas">
+    <h2>🌎 Explora los temas</h2>
+    <p>Selecciona un tema para aprender consejos ecológicos.</p>
+    <div class="tarjetas">
+      <article class="tarjeta">
+        <div class="emoji">♻️</div><h3>Reciclaje</h3>
+        <p>Aprende a separar los residuos.</p>
+        <button class="boton" onclick="mostrarTema('reciclaje')">Ver consejos</button>
+      </article>
+      <article class="tarjeta">
+        <div class="emoji">💧</div><h3>Ahorro de agua</h3>
+        <p>Descubre cómo evitar desperdiciarla.</p>
+        <button class="boton" onclick="mostrarTema('agua')">Ver consejos</button>
+      </article>
+      <article class="tarjeta">
+        <div class="emoji">⚡</div><h3>Energía</h3>
+        <p>Consejos para ahorrar electricidad.</p>
+        <button class="boton" onclick="mostrarTema('energia')">Ver consejos</button>
+      </article>
+      <article class="tarjeta">
+        <div class="emoji">🌳</div><h3>Biodiversidad</h3>
+        <p>Aprende a proteger plantas y animales.</p>
+        <button class="boton" onclick="mostrarTema('biodiversidad')">Ver consejos</button>
+      </article>
+    </div>
+    <div id="informacion" class="informacion" aria-live="polite"></div>
+  </section>
+
+  <section id="quiz">
+    <h2>📝 Cuestionario ecológico</h2>
+    <p>Responde las preguntas y comprueba lo que has aprendido.</p>
+    <div class="quiz">
+      <p id="progreso">Pregunta 1 de 4</p>
+      <h3 id="pregunta"></h3>
+      <div id="respuestas" class="respuestas"></div>
+      <p id="comentario" aria-live="polite"></p>
+      <button id="siguiente" class="boton" onclick="siguientePregunta()" hidden>Siguiente pregunta</button>
+      <p id="resultado" aria-live="polite"></p>
+      <button id="reiniciar" class="boton" onclick="reiniciarQuiz()" hidden>Volver a empezar</button>
+    </div>
+  </section>
+
+  <section id="acerca">
+    <h2>Acerca de EcoAprende</h2>
+    <div class="acerca">
+      <p><strong>Objetivo:</strong> enseñar a las personas a cuidar el medio ambiente mediante información y actividades educativas.</p>
+      <p><strong>Justificación:</strong> la contaminación y el desperdicio de recursos afectan a la naturaleza. La educación ayuda a desarrollar hábitos responsables.</p>
+      <p><strong>Herramientas:</strong> HTML, CSS y JavaScript para construir una página interactiva que se adapte a celulares y computadoras.</p>
+      <p><strong>Conclusión:</strong> la tecnología puede ayudarnos a aprender y compartir acciones que contribuyan a proteger nuestro planeta.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>🌱 EcoAprende</strong>
+  <p>Pequeñas acciones, grandes cambios.</p>
+  <p>Proyecto escolar de educación ambiental.</p>
+</footer>
+
+<script>
+const temas = {
+  reciclaje: {
+    titulo: "♻️ Reciclaje",
+    consejos: [
+      "Separa papel, cartón, vidrio, metal y plástico según las reglas locales.",
+      "Reutiliza bolsas y recipientes cuando sea posible.",
+      "Reduce el uso de productos desechables.",
+      "Deposita los residuos en los lugares adecuados."
+    ]
+  },
+  agua: {
+    titulo: "💧 Ahorro de agua",
+    consejos: [
+      "Cierra la llave mientras te cepillas los dientes.",
+      "Evita desperdiciar agua al lavar.",
+      "Reporta las fugas de agua.",
+      "Riega las plantas cuando haya menos evaporación."
+    ]
+  },
+  energia: {
+    titulo: "⚡ Ahorro de energía",
+    consejos: [
+      "Apaga las luces que no estés utilizando.",
+      "Aprovecha la luz natural.",
+      "Utiliza la electricidad de manera responsable.",
+      "Apaga los aparatos que no necesites."
+    ]
+  },
+  biodiversidad: {
+    titulo: "🌳 Biodiversidad",
+    consejos: [
+      "No tires basura en parques ni áreas naturales.",
+      "Respeta a los animales y sus hábitats.",
+      "Planta especies apropiadas para tu región.",
+      "Cuida las plantas y los árboles."
+    ]
+  }
+};
+
+function mostrarTema(nombre) {
+  const tema = temas[nombre];
+  const contenedor = document.getElementById("informacion");
+  const titulo = document.createElement("h3");
+  titulo.textContent = tema.titulo;
+  const parrafo = document.createElement("p");
+  parrafo.textContent = "Consejos para cuidar el medio ambiente:";
+  const lista = document.createElement("ul");
+  tema.consejos.forEach(function(consejo) {
+    const elemento = document.createElement("li");
+    elemento.textContent = consejo;
+    lista.appendChild(elemento);
+  });
+  contenedor.replaceChildren(titulo, parrafo, lista);
+  contenedor.classList.add("visible");
+  contenedor.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+const preguntas = [
+  {
+    texto: "¿Qué acción ayuda a ahorrar agua?",
+    opciones: ["Dejar la llave abierta", "Cerrar la llave al cepillarse", "Jugar con la manguera"],
+    correcta: 1
+  },
+  {
+    texto: "¿Qué debemos hacer con los residuos reciclables?",
+    opciones: ["Separarlos según las reglas locales", "Tirarlos al suelo", "Quemarlos"],
+    correcta: 0
+  },
+  {
+    texto: "¿Cómo podemos ahorrar electricidad?",
+    opciones: ["Dejar las luces encendidas", "Encender luces sin necesidad", "Apagar las luces que no utilizamos"],
+    correcta: 2
+  },
+  {
+    texto: "¿Cómo protegemos la biodiversidad?",
+    opciones: ["Molestando a los animales", "Tirando basura en el bosque", "Respetando plantas y animales"],
+    correcta: 2
+  }
+];
+
+let indice = 0;
+let puntos = 0;
+let respondida = false;
+
+function mostrarPregunta() {
+  respondida = false;
+  const pregunta = preguntas[indice];
+  document.getElementById("progreso").textContent = `Pregunta ${indice + 1} de ${preguntas.length}`;
+  document.getElementById("pregunta").textContent = pregunta.texto;
+  document.getElementById("comentario").textContent = "";
+  document.getElementById("resultado").textContent = "";
+  document.getElementById("siguiente").hidden = true;
+  document.getElementById("reiniciar").hidden = true;
+  const contenedor = document.getElementById("respuestas");
+  contenedor.replaceChildren();
+  pregunta.opciones.forEach(function(opcion, i) {
+    const boton = document.createElement("button");
+    boton.textContent = opcion;
+    boton.type = "button";
+    boton.addEventListener("click", function() { comprobarRespuesta(i); });
+    contenedor.appendChild(boton);
+  });
+}
+
+function comprobarRespuesta(seleccion) {
+  if (respondida) return;
+  respondida = true;
+  const pregunta = preguntas[indice];
+  const botones = document.querySelectorAll("#respuestas button");
+  botones.forEach(function(boton) { boton.disabled = true; });
+  if (seleccion === pregunta.correcta) {
+    puntos++;
+    document.getElementById("comentario").textContent = "¡Correcto! Muy bien. 🌱";
+  } else {
+    document.getElementById("comentario").textContent =
+      "Respuesta correcta: " + pregunta.opciones[pregunta.correcta] + ". ¡Sigue aprendiendo!";
+  }
+  if (indice < preguntas.length - 1) {
+    document.getElementById("siguiente").hidden = false;
+  } else {
+    document.getElementById("resultado").textContent =
+      `Terminaste: ${puntos} de ${preguntas.length} respuestas correctas.`;
+    document.getElementById("reiniciar").hidden = false;
+  }
+}
+
+function siguientePregunta() {
+  if (indice < preguntas.length - 1) {
+    indice++;
+    mostrarPregunta();
+  }
+}
+
+function reiniciarQuiz() {
+  indice = 0;
+  puntos = 0;
+  mostrarPregunta();
+}
+
+mostrarPregunta();
+</script>
+</body>
+</html>
